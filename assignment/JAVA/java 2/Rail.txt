@@ -1,0 +1,81 @@
+ rail que
+
+
+public abstract class Compartment {
+public abstract void notice();
+}
+
+
+public class FirstClass extends Compartment {
+
+	@Override
+	public void notice() {
+		// TODO Auto-generated method stub
+		System.out.println("This is FirstClass Compartment");
+	}
+
+}
+
+
+
+public class GeneralLuggage extends Compartment {
+
+	@Override
+	public void notice() {
+		// TODO Auto-generated method stub
+        System.out.println("This is General Luggage Compartment");
+	}
+
+}
+
+
+
+public class Ladies extends Compartment {
+
+	@Override
+	public void notice() {
+		// TODO Auto-generated method stub
+		System.out.println("This is Ladies Compartment");
+	}
+
+}
+
+
+
+public class Luggage extends Compartment {
+
+	@Override
+	public void notice() {
+		// TODO Auto-generated method stub
+		System.out.println("This is Luggage Compartment");
+	}
+
+}
+
+
+import java.util.Random;
+public class TestCompartment {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+Compartment c[]=new Compartment[10];
+Random rnd=new Random();
+int n=0;
+for(int i=0;i<10;i++)
+{
+n=rnd.nextInt(4);
+if(n==0)
+	c[i]=new FirstClass();
+else if(n==1)
+c[i]=new Ladies();
+else if(n==2)
+	c[i]=new GeneralLuggage();
+else 
+	c[i]=new Luggage();
+c[i].notice();
+
+}
+
+	}
+
+}

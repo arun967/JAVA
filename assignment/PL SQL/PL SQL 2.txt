@@ -1,0 +1,181 @@
+1.
+
+
+
+declare
+
+c number(2);
+
+deptno number(2);
+
+begin 
+
+deptno:=:deptno;
+
+update employee set salary=salary*1.1 where dept_no = deptno;
+
+if(sql%found) then
+
+c:=sql%rowcount;
+
+dbms_output.put_line('records updated ' ||c);
+
+elsif(sql%notfound) then
+
+c:=sql%rowcount;
+
+dbms_output.put_line('records not updated '||c);
+
+end if;
+
+end;
+
+2)
+
+Declare 
+       cursor yocur is
+       select fname,salary,grade from employee;
+
+      begin       
+       
+       for v_rec in yocur
+        loop
+          EXIT when yocur%notfound;
+          DBMS_OUTPUT.PUT_LINE('name is '|| v_rec.fname  ||   '  sal is'||  v_rec.salary ||'  grade is'  ||  v_rec.grade);
+      end loop;
+      
+end;
+
+
+4)
+
+DECLARE
+   CURSOR empcur (job1 varchar2)
+IS
+   SELECT ename, deptno, salary from employee where job=job1;
+   v_ename EMPLOYEE.ename%TYPE;
+   v_deptno EMPLOYEE.deptno%TYPE;
+   v_salary EMPLOYEE.salary%TYPE;
+begin
+  open empcur(:job1);
+  fetch empcur into v_ename, v_deptno,v_salary ;
+DBMS_OUTPUT.PUT_LINE('EMP_Name:  '||v_ename);
+DBMS_OUTPUT.PUT_LINE('DEPT NO:  '|| v_deptno);
+DBMS_OUTPUT.PUT_LINE('EMP_Salary:  '||v_salary);
+
+  close empcur;
+end;
+
+output::
+
+EMP_Name:  Priya
+DEPT NO:  50
+EMP_Salary:  50000
+
+Statement processed.
+
+5.
+
+
+
+declare
+
+ cursor cur_123 is
+
+ select emp_no,emp_name,salary,job,dept_no from employee;
+
+  eno employee.emp_no%type;
+
+  ename employee.emp_name%type;
+
+  sal employee.salary%type;
+
+  job employee.job%type;
+
+  dep employee.dept_no%type;
+
+
+begin
+
+open cur_123;
+
+  loop
+
+  fetch cur_123 into  eno, ename,sal,job,dep;
+
+  exit when cur_123%notfound;
+
+  if(job = 'clerk' and dep=10) then
+
+  update employee set salary=sal*1.2 where emp_no=eno;
+
+  dbms_output.put_line( ename || ' ' || sal*1.2 || ' ' || job || ' '||dep);
+
+  elsif(job = 'manager' and dep=20) then
+
+  update employee set salary=sal*1.05 where emp_no=eno;
+
+  dbms_output.put_line( ename || ' ' || sal*1.05 || ' ' || job || ' '||dep);
+
+  else
+
+  update employee set salary=sal*1.1 where emp_no=eno;
+
+  dbms_output.put_line( ename || ' ' || sal*1.1 || ' ' || job || ' '||dep);
+
+  end if;
+
+  end loop;
+
+ close cur_123;
+
+end;
+
+Practice 9:
+delcare
+u Exception;
+e_job employee.Job%type;
+begin
+select e_job into Job from employee; 
+for i IN (select * from employee where e_job='President')
+loop
+if  i.e_job>1 then
+raise u;
+end if;
+end loop;
+Exception
+when u then
+dbms_output.put_line('More than one president');
+end;
+
+_________________________________________________________________________________________________________________
+Practice 10:
+declare 
+empno1 employee.e_id%type;
+empno2 employee.e_id%type;
+sal employee.e_id%type;
+d Exception;
+f Exception;
+begin
+empno1:=:empno1;
+empno2:=:empno2;
+select sal into salary from employee;
+select sal from employee where e_id=empno1;
+if(sql%found) then
+sal:=sal*1.1;
+elsif(sql%notfound) then
+raise d;
+end if;
+select sal from employee where e_id=empno2;
+if(sql%found) then
+sal:=sal*1.2;
+elsif(sql%notfound) then
+raise f;
+end if;
+Exception
+when d then
+dbms_output.put_line('NO such employee');
+when f then
+dbms_output.put_line('NO such employee');
+end;
+

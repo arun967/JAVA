@@ -1,0 +1,74 @@
+
+//MEDICINE 
+
+import java.util.Scanner;
+public class Medicine {
+
+	
+	public void displayLabel() {
+		Scanner sc=new Scanner(System.in);
+		System.out.println("Enter name of the company");
+		String name=sc.next();
+		System.out.println("Address of the company");
+		String add=sc.next();
+}
+}
+
+//TABLETS
+public class Tablets extends Medicine {
+
+	@Override
+	public void displayLabel() {
+		// TODO Auto-generated method stub
+		super.displayLabel();
+		System.out.println(" Tablets are of various types");
+	}
+}
+
+//SYRUPS
+public class Syrup extends Medicine {
+
+	@Override
+	public void displayLabel() {
+		// TODO Auto-generated method stub
+		super.displayLabel();
+		System.out.println(" syrups are liquid");
+	}
+
+}
+
+//Ointment
+
+public class Ointment extends Medicine {
+
+	@Override
+	public void displayLabel() {
+		// TODO Auto-generated method stub
+		super.displayLabel();
+		System.out.println(" Ointment is for external use only");
+	}
+
+}
+
+//Main
+import java.util.Random;
+public class TestMedicine {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+Medicine m[]= new Medicine[10];
+Random rnd=new Random();
+
+int n=0;
+for(int i=0;i<10;i++)
+{	n=rnd.nextInt(3);
+	if(n==0) 
+		m[i]=new Tablets();
+	else if(n==1) 
+		m[i]=new Syrup();
+	if(n==2) 
+		m[i]=new Ointment();
+	m[i].displayLabel();
+}
+	}
+}

@@ -1,0 +1,271 @@
+
+1)
+v_id NUMBER(4); 
+
+correct
+
+b. DECLARE
+v_x, v_y, v_z VARCHAR(2);
+
+incorrect, because can’t declare multiple variables at once
+
+c. DECLARE
+v_birthdate DATE NOT NULL;
+
+incorrect, because must assign a value 
+
+d. DECLARE
+v_in_stock BOOLEAN :=1;
+incorrect, it should be BOOBLEAN:=true;
+=======================================================================
+2)
+Statement processed.
+=======================================================================================
+3)
+DECLARE
+      	   v_weight NUMBER (3):=600;
+             v_message VARCHAR2(255):='Product 10012';
+         
+     BEGIN
+ 		DECLARE
+      			v_weight NUMBER(3):=1;
+      			v_message VARCHAR2(25):='Product 11001';
+      			v_new_locn VARCHAR2(25):='Europe';
+   		
+BEGIN
+    			v_weight:=v_weight+1;
+
+  			v_new_locn:='Western'|| v_new_locn; 	
+DBMS_OUTPUT.PUT_LINE( v_weight || ' '||  v_message|| ' ' || v_new_locn);		
+END; 
+
+v_weight:=v_weight + 1;
+v_message:=v_message|| 'is in stock';
+DBMS_OUTPUT.PUT_LINE( v_weight || ' '||  v_message);		
+END; 
+
+O/P
+
+2 Product 11001 WesternEurope
+601 Product 10012is in stock
+=======================================================================================
+4)
+Declare
+
+n1 number(2);
+n2 number(2);
+ans number(2);
+begin 
+  n1:=12;
+n2:=4;
+ans:=n1%n2;
+DBMS_OUTPUT.PUT_LINE('sub is '|| ans);
+end;
+===========================================================
+5)
+practice 5:
+declare
+max1 number(7);
+min1 number(7);
+dept varchar2(20);
+begin
+dept:=:dept_no;
+select max(salary),min(salary) into max1,min1 from employee where dept_no=dept;
+dbms_output.put_line('Maximum salary:'||max1||'Minimum salary: '||min1);
+end;
+
+
+
+
+=================================================================
+6)
+declare 
+  eid EMPLOYEE.EMPNO%TYPE;
+  ENM EMPLOYEE.ENAME%TYPE;
+  ESAL EMPLOYEE.SALARY%TYPE;
+  BEGIN 
+ EID:=:EMPNO;
+ SELECT EMPNO,ENAME,SALARY INTO EID,ENM,ESAL FROM EMPLOYEE WHERE EMPNO=EID;
+if Esal < 2500 then
+         DBMS_OUTPUT.PUT_LINE('LOW');
+elsif (Esal >= 2500) and (Esal <5000) then
+       DBMS_OUTPUT.PUT_LINE('Medium');
+else 
+     DBMS_OUTPUT.PUT_LINE('HIGH');
+end if;
+
+ 
+END;
+
+O/P
+HIGH
+
+Statement processed.
+=======================================================================================
+7)
+DECLARE
+N NUMBER (2);
+ANS VARCHAR2(20);
+BEGIN
+N:=:N;
+DBMS_OUTPUT.PUT_LINE('ENTER VALUE IN THE RANGE OF 1 TO 12');
+CASE N
+WHEN 1 THEN
+      ANS := 'jANUARY';
+WHEN 2 THEN
+      ANS := 'FEBRUARY';
+WHEN 3 THEN
+      ANS := 'MARCH';
+
+WHEN 4 THEN
+      ANS := 'APRIL';
+
+WHEN 5 THEN
+      ANS :='MAY';
+
+WHEN 6 THEN
+      ANS := 'JUNE';
+
+WHEN 7 THEN
+      ANS := 'JULY';
+
+WHEN 8 THEN
+      ANS := 'AUGUST';
+
+WHEN 9 THEN
+      ANS := 'SEPTEMBER';
+
+WHEN 10 THEN
+      ANS := 'OCTOBER';
+
+WHEN 11 THEN
+      ANS := 'NOVEMBER';
+
+WHEN 12 THEN
+      ANS := 'DECEMBER';
+
+ ELSE
+      ANS := 'INVALID MONTH';
+ END CASE;
+DBMS_OUTPUT.PUT_LINE('Month is '  || ANS);
+END;
+
+O/P
+ENTER VALUE IN THE RANGE OF 1 TO 12
+Month is APRIL
+
+Statement processed.
+
+====================================================================================
+practice8.a 
+declare 
+n number(3);
+f0 number(1):=0;
+f1 number(1):=1;
+v_count number(3):=2;
+num number(2);
+begin
+n:=:n;
+dbms_output.put_line(f0);
+dbms_output.put_line(f1);
+
+while(v_count<=n)
+loop
+num:=f0+f1;
+dbms_output.put_line(' '||num);
+f1:=num;
+f0:=f1;
+
+v_count:=v_count+1;
+end loop;
+end;
+
+
+
+===================================================================================
+practice 8.b
+declare 
+n number(3);
+f0 number(1):=0;
+f1 number(1):=1;
+v_count number(3):=2;
+num number(2);
+begin
+n:=:n;
+dbms_output.put_line(f0);
+dbms_output.put_line(f1);
+
+while(v_count<=n)
+loop
+num:=f0+f1;
+dbms_output.put_line(' '||num);
+f1:=num;
+f0:=f1;
+
+v_count:=v_count+1;
+end loop;
+end;
+
+============================================================================
+
+
+
+=================================================================
+
+practice 8.d
+declare 
+n number(3);
+flag number(2):=0;
+i number(2):=2;
+begin
+n:=:n;
+while(i<=(n/2))
+loop
+if(mod(n,i)=0) then
+flag:=1;
+exit;
+end if;
+i:=i+1;
+end loop;
+if(n=1) then
+dbms_output.put_line('1 is neither prime nor composite');
+elsif(flag=0) then
+dbms_output.put_line('  Prime Number');
+else
+dbms_output.put_line(' Not prime Number');
+end if;
+end;
+=============================================================
+
+practice 8.e
+declare 
+range1 number(5);
+range2 number(5);
+
+flag number(2);
+i number(2):=2;
+begin
+range1:=:range1;
+range2:=:range2;
+while(range1<range2)
+loop
+flag:=0;
+while(i<=(range1/2))
+loop
+if(mod(range1,i)=0) then
+flag:=1;
+exit;
+end if;
+i:=i+1;
+end loop;
+if(flag=0) then
+dbms_output.put_line(' '||range1);
+range1:=range1+1;
+end if;
+end loop;
+end;
+===================================================================
+practice 10.
+ insert into depart values((select max(dno)+1 from depart),'Education',Null)
+
+

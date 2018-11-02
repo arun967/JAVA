@@ -1,0 +1,53 @@
+
+public class Car {
+	 int speed;
+	 int noofgear;
+
+	public void drive(int x,int y)
+	{
+		speed=x;
+		noofgear=y;
+	}
+	public void display()
+	{
+		System.out.println("speed of car"+speed);
+		System.out.println("No of gear"+noofgear);
+	}
+}
+
+public class SportCar extends Car {
+	
+	String AirBalloonType;
+	
+	public SportCar(int x, int y)
+	{
+		super.drive(x, y);
+		this.AirBalloonType="Something";
+	}
+/*	public void AirBallon()
+	{
+		System.out.println("Speed of car"+super.speed);
+		System.out.println("No of gear"+super.noofgear);
+		super.speed=+20;
+		super.noofgear=+1;
+	}*/
+	public void display()
+	{
+        super.display();
+        System.out.println(AirBalloonType);
+	}
+	
+	
+}
+
+public class TestCar {
+
+	public static void main(String[] args) {
+	SportCar sc=new SportCar(20,2);
+	
+	sc.display();
+	
+
+	}
+
+}

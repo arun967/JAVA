@@ -1,0 +1,111 @@
+
+public class Flute extends Instrument {
+	
+	@Override
+	public void play() {
+		// TODO Auto-generated method stub
+		
+		System.out.println("Flute is playing toot toot toot");
+	
+	}
+}
+
+
+
+public class Guitar extends Instrument {
+
+
+	@Override
+	public void play() {
+		// TODO Auto-generated method stub
+		System.out.println(" Guitar is playing tin tin tim");
+	
+	}
+	
+
+}
+
+
+
+public abstract class Instrument {
+   public abstract void play();
+}
+
+
+
+public class Piano extends Instrument{
+	
+	
+	@Override
+	public void play() {
+	
+		// TODO Auto-generated method stub
+		System.out.println("Piano is playing tan tan tam");
+	
+			
+	}
+}
+
+
+
+public class TestInstrument {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+Instrument inst[] = new Instrument[10];
+
+for (int i1 = 0; i1 < 10; i1++) {
+	Instrument i=null;
+if(i1==1||i1==3||i1==5)
+{
+	i = new Piano();
+		
+}
+else if(i1==2||i1==4||i1==6)
+{
+	i=new Guitar();
+	}
+else
+{
+	i=new Flute();
+	}
+
+if(i instanceof Piano)
+{
+	Piano p=(Piano)i;
+	//System.out.println("Manager Bonus is "+m.getBonus());
+	System.out.println(p);
+	p.play();
+	inst[i1]=p;
+			
+}
+
+else if(i instanceof Guitar)
+{
+	Guitar g=(Guitar)i;
+	//System.out.println("Manager Bonus is "+m.getBonus());
+	g.play();
+	inst[i1]=g;
+}
+else if(i instanceof Flute)
+{
+	Flute f=(Flute)i;
+	//System.out.println("Manager Bonus is "+m.getBonus());
+	f.play();
+	inst[i1]=f;
+	
+}
+}
+
+}
+
+/*i=new Flute("toot");
+System.out.println("Flute is playing" +i.play());
+i=new Guitar("tin tin tin");
+System.out.println("Guitar is playing "+i.play());
+i=new Piano("tan tan tan");
+System.out.println("Piano is playing"+i.play());*/
+	}
+
+
